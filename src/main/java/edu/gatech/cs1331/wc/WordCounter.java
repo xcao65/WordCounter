@@ -57,18 +57,18 @@ public class WordCounter {
 
 	}
 
-	public Collection<String> words() {
-		//String type, object default
-		return counts.keySet();
-	}
-
-
 	// public Collection<String> words() {
 	// 	//String type, object default
-	// 	TreeSet<String> sortedWords = new TreeSet<>(new RankComparator());
-	// 	sortedWords.addAll(counts.keySet());
-	// 	return sortedWords;
+	// 	return counts.keySet();
 	// }
+
+
+	public Collection<String> words() {
+		//String type, object default
+		TreeSet<String> sortedWords = new TreeSet<>(new RankComparator());
+		sortedWords.addAll(counts.keySet());
+		return sortedWords;
+	}
 
 	public int count(String word) {
 		return counts.get(word);
