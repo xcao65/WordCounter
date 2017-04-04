@@ -67,13 +67,11 @@ public class WordCounter {
 		//String type, object default
 		
 		//TreeSet constructor takes a comparator type
-		TreeSet<String> sortedWords = new TreeSet<>(new Comparator<String>()
-			{
-			public int compare(String w1, String w2) {
+		TreeSet<String> sortedWords = new TreeSet<>((String w1, String w2) -> {
 				int diff = counts.get(w1) - counts.get(w2);
 				return diff == 0 ? w1.compareTo(w2) : diff;
 			}
-		});
+		);
 
 		sortedWords.addAll(counts.keySet());
 		return sortedWords;
