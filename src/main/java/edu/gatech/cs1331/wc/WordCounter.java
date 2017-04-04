@@ -16,13 +16,13 @@ public class WordCounter {
 
 	private Map<String, Integer> counts;
 
-	private class RankComparator implements Comparator<String> {
-	//always give a minimum scope!
-		public int compare(String w1, String w2) {
-			int diff = counts.get(w1) - counts.get(w2);
-			return diff == 0 ? w1.compareTo(w2) : diff;
-		}
-	}
+	// private class RankComparator implements Comparator<String> {
+	// //always give a minimum scope!
+	// 	public int compare(String w1, String w2) {
+	// 		int diff = counts.get(w1) - counts.get(w2);
+	// 		return diff == 0 ? w1.compareTo(w2) : diff;
+	// 	}
+	// }
 
 	private String normalize(String word) {
 		return word;
@@ -65,7 +65,16 @@ public class WordCounter {
 
 	public Collection<String> words() {
 		//String type, object default
-		TreeSet<String> sortedWords = new TreeSet<>(new RankComparator());
+		
+		//TreeSet constructor takes a comparator type
+		TreeSet<String> sortedWords = new TreeSet<>(new Comparator<String>()
+			{
+			public int compare(String w1, String w2) {
+				int diff = counts.get(w1) - counts.get(w2);
+				return diff == 0 ? w1.compareTo(w2) : diff;
+			}
+		});
+
 		sortedWords.addAll(counts.keySet());
 		return sortedWords;
 	}
